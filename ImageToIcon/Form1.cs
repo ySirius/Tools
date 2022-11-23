@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Svg;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,14 +15,16 @@ namespace ImageToIcon
 {
     public partial class Form1 : Form
     {
-        private string filePath = "";
+        private string iconPath = "";
+
+        private string svgPath = "";
 
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void picBox_DragEnter(object sender, DragEventArgs e)
+        private void PicBox_DragEnter(object sender, DragEventArgs e)   
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
@@ -33,18 +36,54 @@ namespace ImageToIcon
             }
         }
 
-        private void picBox_DragDrop(object sender, DragEventArgs e)
+        private void TbPath_DragDrop(object sender, DragEventArgs e)
         {
-            filePath = ((System.Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
+            svgPath = ((System.Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
             //string ext = Path.GetExtension(text);
             //filePath = text;
-            if (File.Exists(filePath))
+            if (File.Exists(svgPath))
             {
-                picBox.Image = Image.FromFile(filePath);
+                tbPath.Text = svgPath;
             }
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void BtnPng_Click(object sender, EventArgs e)
+        {
+            ReadSvg();
+        }
+
+        private void ReadSvg()
+        {
+            SvgDocument svgDocument = SvgDocument.Open(svgPath);
+
+            int wid = (int)svgDocument.Bounds.Width;
+            int hig = (int)svgDocument.Bounds.Height;
+
+            Bitmap bitmap = new Bitmap(wid, hig);
+            Graphics graphics = Graphics.FromImage(bitmap);
+            ISvgRenderer renderer = SvgRenderer.FromGraphics(graphics);
+            svgDocument.Width = wid;
+            svgDocument.Height = hig;
+            svgDocument.Draw(renderer);
+
+            string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string path = Path.Combine(desktop, "1.png");
+
+            bitmap.Save(path, ImageFormat.Png);
+        }
+
+        private void PicBox_DragDrop(object sender, DragEventArgs e)
+        {
+            iconPath = ((System.Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
+            //string ext = Path.GetExtension(text);
+            //filePath = text;
+            if (File.Exists(iconPath))
+            {
+                picBox.Image = Image.FromFile(iconPath);
+            }
+        }
+
+        private void Panel1_Paint(object sender, PaintEventArgs e)
         {
             if (picBox.Image == null)
             {
@@ -63,8 +102,8 @@ namespace ImageToIcon
 
         private void picBox_MouseUp(object sender, MouseEventArgs e)
         {
-            if (string.IsNullOrEmpty(filePath) || !File.Exists(filePath)) return;
-            picBox.Image = Image.FromFile(filePath);
+            if (string.IsNullOrEmpty(iconPath) || !File.Exists(iconPath)) return;
+            picBox.Image = Image.FromFile(iconPath);
         }
 
         private void BtnExport_Click(object sender, EventArgs e)
@@ -118,5 +157,7 @@ namespace ImageToIcon
                 }
             }
         }
+
+       
     }
 }

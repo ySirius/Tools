@@ -48,10 +48,10 @@
             this.cbPerson.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbPerson.Font = new System.Drawing.Font("Consolas", 10F);
             this.cbPerson.FormattingEnabled = true;
-            this.cbPerson.Location = new System.Drawing.Point(3, 18);
+            this.cbPerson.Location = new System.Drawing.Point(3, 25);
             this.cbPerson.Margin = new System.Windows.Forms.Padding(4);
             this.cbPerson.Name = "cbPerson";
-            this.cbPerson.Size = new System.Drawing.Size(185, 171);
+            this.cbPerson.Size = new System.Drawing.Size(235, 233);
             this.cbPerson.TabIndex = 0;
             // 
             // btnGo
@@ -61,7 +61,7 @@
             this.btnGo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGo.Font = new System.Drawing.Font("Consolas", 11F);
             this.btnGo.ForeColor = System.Drawing.Color.White;
-            this.btnGo.Location = new System.Drawing.Point(120, 196);
+            this.btnGo.Location = new System.Drawing.Point(165, 268);
             this.btnGo.Margin = new System.Windows.Forms.Padding(4);
             this.btnGo.Name = "btnGo";
             this.btnGo.Size = new System.Drawing.Size(149, 30);
@@ -74,9 +74,9 @@
             // 
             this.tbResult.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbResult.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tbResult.Location = new System.Drawing.Point(0, 233);
+            this.tbResult.Location = new System.Drawing.Point(0, 305);
             this.tbResult.Name = "tbResult";
-            this.tbResult.Size = new System.Drawing.Size(384, 28);
+            this.tbResult.Size = new System.Drawing.Size(478, 39);
             this.tbResult.TabIndex = 9;
             this.tbResult.Text = "";
             // 
@@ -86,10 +86,10 @@
             this.lbList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbList.Font = new System.Drawing.Font("Consolas", 11F);
             this.lbList.FormattingEnabled = true;
-            this.lbList.ItemHeight = 18;
-            this.lbList.Location = new System.Drawing.Point(3, 18);
+            this.lbList.ItemHeight = 26;
+            this.lbList.Location = new System.Drawing.Point(3, 25);
             this.lbList.Name = "lbList";
-            this.lbList.Size = new System.Drawing.Size(187, 171);
+            this.lbList.Size = new System.Drawing.Size(231, 233);
             this.lbList.TabIndex = 10;
             // 
             // groupBox1
@@ -98,7 +98,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(191, 192);
+            this.groupBox1.Size = new System.Drawing.Size(241, 261);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "All ";
@@ -107,9 +107,9 @@
             // 
             this.groupBox2.Controls.Add(this.lbList);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(191, 0);
+            this.groupBox2.Location = new System.Drawing.Point(241, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(193, 192);
+            this.groupBox2.Size = new System.Drawing.Size(237, 261);
             this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Lucky Value";
@@ -121,14 +121,15 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(384, 192);
+            this.panel1.Size = new System.Drawing.Size(478, 261);
             this.panel1.TabIndex = 13;
             // 
             // FrmMain
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(384, 261);
+            this.ClientSize = new System.Drawing.Size(478, 344);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tbResult);
             this.Controls.Add(this.btnGo);

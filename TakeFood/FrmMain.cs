@@ -88,7 +88,7 @@ namespace TakeFood
 
             var boy = GetBoy();
 
-            tbResult.AppendText("             " + 
+            tbResult.AppendText("          " + 
                 DateTime.Now.ToString("yyyy-MM-dd") + " Lucky Boy: " + boy);
 
             WriteJson(boy);
