@@ -1,4 +1,4 @@
-﻿using Svg;
+﻿using Svg;  
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,13 +15,12 @@ namespace ImageToIcon
 {
     public partial class Form1 : Form
     {
-        private string iconPath = "";
-
-        private string svgPath = "";
+        private string _PicPath = "";
 
         public Form1()
         {
             InitializeComponent();
+            cbFormat.SelectedIndex = 0;
         }
 
         private void PicBox_DragEnter(object sender, DragEventArgs e)   
@@ -36,25 +35,9 @@ namespace ImageToIcon
             }
         }
 
-        private void TbPath_DragDrop(object sender, DragEventArgs e)
+        private Image ReadSvg(string path)
         {
-            svgPath = ((System.Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
-            //string ext = Path.GetExtension(text);
-            //filePath = text;
-            if (File.Exists(svgPath))
-            {
-                tbPath.Text = svgPath;
-            }
-        }
-
-        private void BtnPng_Click(object sender, EventArgs e)
-        {
-            ReadSvg();
-        }
-
-        private void ReadSvg()
-        {
-            SvgDocument svgDocument = SvgDocument.Open(svgPath);
+            SvgDocument svgDocument = SvgDocument.Open(path);
 
             int wid = (int)svgDocument.Bounds.Width;
             int hig = (int)svgDocument.Bounds.Height;
@@ -65,21 +48,26 @@ namespace ImageToIcon
             svgDocument.Width = wid;
             svgDocument.Height = hig;
             svgDocument.Draw(renderer);
-
-            string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            string path = Path.Combine(desktop, "1.png");
-
-            bitmap.Save(path, ImageFormat.Png);
+            return bitmap;
         }
 
         private void PicBox_DragDrop(object sender, DragEventArgs e)
         {
-            iconPath = ((System.Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
-            //string ext = Path.GetExtension(text);
-            //filePath = text;
-            if (File.Exists(iconPath))
+            _PicPath = ((System.Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
+            string ext = Path.GetExtension(_PicPath);
+            if (File.Exists(_PicPath))
             {
-                picBox.Image = Image.FromFile(iconPath);
+                if (ext == ".svg")
+                {
+                    picBox.Image = ReadSvg(_PicPath);
+                    cbFormat.SelectedIndex = 0;
+
+                }
+                else if (ext == ".png")
+                {
+                    picBox.Image = Image.FromFile(_PicPath);
+                    cbFormat.SelectedIndex = 1;
+                }
             }
         }
 
@@ -95,29 +83,29 @@ namespace ImageToIcon
             }
         }
 
-        private void picBox_MouseMove(object sender, MouseEventArgs e)
-        {
-            //picBox_DragDrop(sender, null);
-        }
-
-        private void picBox_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (string.IsNullOrEmpty(iconPath) || !File.Exists(iconPath)) return;
-            picBox.Image = Image.FromFile(iconPath);
-        }
-
         private void BtnExport_Click(object sender, EventArgs e)
         {
             if (picBox.Image == null) return;
             
             string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            string path = Path.Combine(desktop, "1.ico");
 
-            var icon = ConvertToIcon(picBox.Image);
-            using (Stream stream = new System.IO.FileStream(path, System.IO.FileMode.Create))
+            string path = "";
+            switch (cbFormat.SelectedIndex)
             {
-                icon.Save(stream);
+                case 0:
+                    path = Path.Combine(desktop, "1.png");
+                    picBox.Image.Save(path, ImageFormat.Png);
+                    break;
+                case 1:
+                    path = Path.Combine(desktop, "1.icon");
+                    var icon = ConvertToIcon(picBox.Image);
+                    using (Stream stream = new System.IO.FileStream(path, System.IO.FileMode.Create))
+                    {
+                        icon.Save(stream);
+                    }
+                    break;
             }
+
         }
 
         public static Icon ConvertToIcon(Image image)
@@ -157,7 +145,5 @@ namespace ImageToIcon
                 }
             }
         }
-
-       
     }
 }

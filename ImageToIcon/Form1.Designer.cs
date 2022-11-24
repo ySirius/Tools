@@ -36,22 +36,17 @@ namespace ImageToIcon
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnExport = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnPng = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.tbPath = new System.Windows.Forms.TextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cbFormat = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.picBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudHeight)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // picBox
             // 
             this.picBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picBox.Location = new System.Drawing.Point(6, 31);
+            this.picBox.Location = new System.Drawing.Point(21, 58);
             this.picBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.picBox.Name = "picBox";
             this.picBox.Size = new System.Drawing.Size(600, 450);
@@ -59,11 +54,10 @@ namespace ImageToIcon
             this.picBox.TabIndex = 0;
             this.picBox.TabStop = false;
             this.picBox.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel1_Paint);
-            this.picBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.picBox_MouseUp);
             // 
             // nudWidth
             // 
-            this.nudWidth.Location = new System.Drawing.Point(58, 490);
+            this.nudWidth.Location = new System.Drawing.Point(73, 20);
             this.nudWidth.Name = "nudWidth";
             this.nudWidth.Size = new System.Drawing.Size(100, 31);
             this.nudWidth.TabIndex = 1;
@@ -71,7 +65,7 @@ namespace ImageToIcon
             // 
             // nudHeight
             // 
-            this.nudHeight.Location = new System.Drawing.Point(215, 490);
+            this.nudHeight.Location = new System.Drawing.Point(230, 20);
             this.nudHeight.Name = "nudHeight";
             this.nudHeight.Size = new System.Drawing.Size(100, 31);
             this.nudHeight.TabIndex = 2;
@@ -80,7 +74,7 @@ namespace ImageToIcon
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 492);
+            this.label1.Location = new System.Drawing.Point(21, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 24);
             this.label1.TabIndex = 3;
@@ -90,7 +84,7 @@ namespace ImageToIcon
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(163, 492);
+            this.label2.Location = new System.Drawing.Point(178, 22);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 24);
             this.label2.TabIndex = 4;
@@ -100,7 +94,7 @@ namespace ImageToIcon
             // btnExport
             // 
             this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExport.Location = new System.Drawing.Point(531, 488);
+            this.btnExport.Location = new System.Drawing.Point(546, 18);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(75, 32);
             this.btnExport.TabIndex = 5;
@@ -108,64 +102,26 @@ namespace ImageToIcon
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
             // 
-            // groupBox1
+            // label4
             // 
-            this.groupBox1.Controls.Add(this.btnPng);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.tbPath);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(613, 86);
-            this.groupBox1.TabIndex = 8;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "SVG转PNG";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(336, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(64, 24);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "转换为";
             // 
-            // btnPng
+            // cbFormat
             // 
-            this.btnPng.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPng.Location = new System.Drawing.Point(531, 30);
-            this.btnPng.Name = "btnPng";
-            this.btnPng.Size = new System.Drawing.Size(75, 31);
-            this.btnPng.TabIndex = 10;
-            this.btnPng.Text = "导出";
-            this.btnPng.UseVisualStyleBackColor = true;
-            this.btnPng.Click += new System.EventHandler(this.BtnPng_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 33);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 24);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "路径";
-            // 
-            // tbPath
-            // 
-            this.tbPath.AllowDrop = true;
-            this.tbPath.Location = new System.Drawing.Point(64, 30);
-            this.tbPath.Name = "tbPath";
-            this.tbPath.Size = new System.Drawing.Size(461, 31);
-            this.tbPath.TabIndex = 0;
-            this.tbPath.DragDrop += new System.Windows.Forms.DragEventHandler(this.TbPath_DragDrop);
-            this.tbPath.DragEnter += new System.Windows.Forms.DragEventHandler(this.PicBox_DragEnter);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.picBox);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.btnExport);
-            this.groupBox2.Controls.Add(this.nudWidth);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.nudHeight);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox2.Location = new System.Drawing.Point(0, 86);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(613, 544);
-            this.groupBox2.TabIndex = 9;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "PNG转ICON";
+            this.cbFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFormat.FormattingEnabled = true;
+            this.cbFormat.Items.AddRange(new object[] {
+            "PNG",
+            "ICON"});
+            this.cbFormat.Location = new System.Drawing.Point(398, 18);
+            this.cbFormat.Name = "cbFormat";
+            this.cbFormat.Size = new System.Drawing.Size(142, 32);
+            this.cbFormat.TabIndex = 7;
             // 
             // Form1
             // 
@@ -173,9 +129,15 @@ namespace ImageToIcon
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(613, 629);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(639, 520);
+            this.Controls.Add(this.cbFormat);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.picBox);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnExport);
+            this.Controls.Add(this.nudHeight);
+            this.Controls.Add(this.nudWidth);
+            this.Controls.Add(this.label2);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -188,11 +150,8 @@ namespace ImageToIcon
             ((System.ComponentModel.ISupportInitialize)(this.picBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudHeight)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -204,11 +163,8 @@ namespace ImageToIcon
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnExport;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox tbPath;
-        private System.Windows.Forms.Button btnPng;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cbFormat;
     }
 }
 
