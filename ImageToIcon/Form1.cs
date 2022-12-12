@@ -97,7 +97,7 @@ namespace ImageToIcon
                     picBox.Image.Save(path, ImageFormat.Png);
                     break;
                 case 1:
-                    path = Path.Combine(desktop, "1.icon");
+                    path = Path.Combine(desktop, "1.ico");
                     var icon = ConvertToIcon(picBox.Image);
                     using (Stream stream = new System.IO.FileStream(path, System.IO.FileMode.Create))
                     {
