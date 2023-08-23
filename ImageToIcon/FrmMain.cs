@@ -72,12 +72,8 @@ namespace ImageToIcon
         {
             string path = @"C:\Users\Yin\Desktop\2.jpg";
             Bitmap bt = new Bitmap(path);
-
             //Graphics g = Graphics.FromImage(bt);
-
             bt.Save(@"C:\Users\Yin\Desktop\3.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
-
-
             //Bitmap bt2 = new Bitmap((@"C:\Users\Yin\Desktop\2.jpg");
 
         }

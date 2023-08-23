@@ -40,10 +40,10 @@
             // 
             // btnCom
             // 
-            this.btnCom.Location = new System.Drawing.Point(530, 57);
+            this.btnCom.Location = new System.Drawing.Point(553, 178);
             this.btnCom.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnCom.Name = "btnCom";
-            this.btnCom.Size = new System.Drawing.Size(100, 63);
+            this.btnCom.Size = new System.Drawing.Size(100, 90);
             this.btnCom.TabIndex = 0;
             this.btnCom.Text = "压缩";
             this.btnCom.UseVisualStyleBackColor = true;
@@ -55,50 +55,50 @@
             this.lbCount.Location = new System.Drawing.Point(14, 9);
             this.lbCount.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lbCount.Name = "lbCount";
-            this.lbCount.Size = new System.Drawing.Size(111, 20);
+            this.lbCount.Size = new System.Drawing.Size(161, 27);
             this.lbCount.TabIndex = 2;
             this.lbCount.Text = "本月用量 0 /500";
             // 
             // tbSource
             // 
-            this.tbSource.Location = new System.Drawing.Point(87, 57);
+            this.tbSource.Location = new System.Drawing.Point(114, 178);
             this.tbSource.Name = "tbSource";
-            this.tbSource.Size = new System.Drawing.Size(350, 25);
+            this.tbSource.Size = new System.Drawing.Size(350, 34);
             this.tbSource.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 60);
+            this.label1.Location = new System.Drawing.Point(14, 181);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 20);
+            this.label1.Size = new System.Drawing.Size(92, 27);
             this.label1.TabIndex = 4;
             this.label1.Text = "压缩目录";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 98);
+            this.label2.Location = new System.Drawing.Point(14, 237);
             this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 20);
+            this.label2.Size = new System.Drawing.Size(92, 27);
             this.label2.TabIndex = 5;
             this.label2.Text = "输出目录";
             // 
             // tbTarget
             // 
-            this.tbTarget.Location = new System.Drawing.Point(87, 95);
+            this.tbTarget.Location = new System.Drawing.Point(114, 234);
             this.tbTarget.Name = "tbTarget";
-            this.tbTarget.Size = new System.Drawing.Size(350, 25);
+            this.tbTarget.Size = new System.Drawing.Size(350, 34);
             this.tbTarget.TabIndex = 6;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(435, 258);
+            this.button1.Location = new System.Drawing.Point(663, 178);
             this.button1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 63);
+            this.button1.Size = new System.Drawing.Size(100, 90);
             this.button1.TabIndex = 7;
             this.button1.Text = "测试压缩";
             this.button1.UseVisualStyleBackColor = true;
@@ -106,9 +106,9 @@
             // 
             // btnOpen
             // 
-            this.btnOpen.Location = new System.Drawing.Point(447, 58);
+            this.btnOpen.Location = new System.Drawing.Point(470, 178);
             this.btnOpen.Name = "btnOpen";
-            this.btnOpen.Size = new System.Drawing.Size(75, 23);
+            this.btnOpen.Size = new System.Drawing.Size(75, 34);
             this.btnOpen.TabIndex = 8;
             this.btnOpen.Text = "打开文件";
             this.btnOpen.UseVisualStyleBackColor = true;

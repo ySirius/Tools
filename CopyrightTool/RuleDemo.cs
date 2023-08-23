@@ -28,7 +28,7 @@ namespace CopyrightTool
 
             Rule vue = new Rule()
             {
-                FileExtension = "File \".html.css.vue.scss.json\"",
+                FileExtension = "File \".html.css.vue.scss.ts\"",
                 LineComment = "LineComment  \"//\"",
                 BlockCommentStart = "BlockCommentStart \"/*\"",
                 BlockCommentEnd = "BlockCommentEnd \"*/\"",
