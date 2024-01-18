@@ -19,17 +19,44 @@ namespace DNSTool
     {
         private bool _isOpen = false;
 
+        private string _currentDns = "";
+
+        private List<string> _dns = new List<string>() { "172.16.7.1", "172.16.7.2" };
+
         public FrmMain()
         {
             InitializeComponent();
-
             panel1.GetType().GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(panel1, true, null);
         }
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
+            InitCombobox();
             GetDns();
             timer1.Enabled = true;
+        }
+
+        private void InitCombobox()
+        {
+            // 读取注册表保存的列表
+            var listStr = RegistryHelper.GetRegistryData("evinf", "steps");
+            if (listStr != "") 
+            {
+                _dns = listStr.Split(new char[] { '#' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            }
+            else
+            {
+                _dns = new List<string>() { "172.16.7.1", "172.16.7.2" };
+            }
+
+            cbDns.Items.Clear();
+            foreach (string dns in _dns)
+            {
+                cbDns.Items.Add(dns);
+            }
+
+            cbDns.SelectedIndex = 0;
+            _currentDns = cbDns.Text;
         }
 
 
@@ -44,12 +71,24 @@ namespace DNSTool
         private void GetDns()
         {
             var dnss = GetDnsAdress();
-            _isOpen = dnss.ToString() == "172.16.7.2";
+            _isOpen = dnss.ToString() == _currentDns;
         }
 
         private static IPAddress GetDnsAdress()
         {
             NetworkInterface[] networkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
+
+            //var item = networkInterfaces.FirstOrDefault(p => p.Name == "以太网");
+            //if (item != null && item.OperationalStatus == OperationalStatus.Up)
+            //{
+            //    IPInterfaceProperties ipProperties = item.GetIPProperties();
+            //    IPAddressCollection dnsAddresses = ipProperties.DnsAddresses;
+
+            //    foreach (IPAddress dnsAdress in dnsAddresses)
+            //    {
+            //        return dnsAdress;
+            //    }
+            //}
 
             foreach (NetworkInterface networkInterface in networkInterfaces)
             {
@@ -70,11 +109,7 @@ namespace DNSTool
 
         private void SetDns()
         {
-            SetIPAddress(null, null, _isOpen ? new string[] { "172.16.7.1" } :
-                          new string[] { "172.16.7.2" }, 
-                _isOpen ? new string[] { "172.16.7.1" } : 
-                          new string[] { "172.16.7.2" }
-                          );
+            SetIPAddress(null, null, new string[] { _currentDns } , new string[] { _currentDns });
         }
 
 
@@ -121,7 +156,7 @@ namespace DNSTool
                     inPar = mo.GetMethodParameters("SetDNSServerSearchOrder");
                     inPar["DNSServerSearchOrder"] = dns;
                     outPar = mo.InvokeMethod("SetDNSServerSearchOrder", inPar, null);
-                    FlushMyCache();
+                    //FlushMyCache();
                 }
             }
         }
@@ -135,7 +170,6 @@ namespace DNSTool
 
             return Nic;
         }
-
 
         private int offset = 0;
 
@@ -151,7 +185,7 @@ namespace DNSTool
             g.Clear(Color.White);
             //g.FillRectangle(new SolidBrush(Color.Blue), new Rectangle(0, panel1.Height - offset, panel1.Width, offset));
             g.DrawArc(new Pen(open, 10), new RectangleF(10, 10, panel1.Width-20, panel1.Width-20), 0, offset);
-            if (offset == 360)
+            if (offset == 360 || !timer1.Enabled)
             {
                 g.FillEllipse(new SolidBrush(open), new RectangleF(10, 10, panel1.Width - 20, panel1.Width - 20));
                 Pen p = new Pen(Color.White, 10);
@@ -182,13 +216,44 @@ namespace DNSTool
         private void panel1_Click(object sender, EventArgs e)
         {
             SetDns();
-            _isOpen = !_isOpen;
+            _isOpen = true;
             timer1.Enabled = true;
         }
 
         private void FrmMain_Resize(object sender, EventArgs e)
         {
             panel1.Invalidate();
+        }
+
+        private void CbDns_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _currentDns = cbDns.Text;
+            GetDns();
+            panel1.Invalidate();
+        }
+
+        private void CbDns_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (cbDns.Text.Length > 0 && !cbDns.Items.Contains(cbDns.Text))
+                {
+                    _dns.Add(cbDns.Text);
+                    WriteRegistry();
+                    InitCombobox();
+                }
+            }
+        }
+
+        private void WriteRegistry()
+        {
+            var str = "";
+            foreach (var item in _dns)
+            {
+                str+= item.ToString() + "#";
+            }
+
+            RegistryHelper.WriteRegistry("evinf", "steps", str);
         }
     }
 }
